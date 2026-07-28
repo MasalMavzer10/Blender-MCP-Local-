@@ -120,7 +120,7 @@ LICENSE                          MIT
 
 ---
 
-## Three things that will torture you
+## Technical Problems
 
 ### 1. The context window trap
 
