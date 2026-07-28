@@ -1,15 +1,17 @@
 # blender-mcp-local
 
 Drive [blender-mcp](https://github.com/ahujasid/blender-mcp) from a **local**
-Gemma model in the terminal. No API keys, no cloud calls — Ollama serves the
-model, [mcphost](https://github.com/mark3labs/mcphost) bridges it to the MCP
-server, and Blender does the modeling.
+Gemma model in the terminal. No API keys, no cloud calls... Ollama serves the
+model, [mcphost](https://github.com/mark3labs/mcphost) brings it to the MCP
+server, and bam Blender does the modeling.
+
 
 ```
 you → mcphost → Ollama (gemma4-blender) → MCP tools → blender-mcp → Blender addon :9876
+ ...an easy peasy path
 ```
 
-Ask for a tree in plain language and Blender builds one:
+Ask for a tree in plain English and Blender builds one:
 
 ```
 $ mcphost
@@ -20,7 +22,7 @@ $ mcphost
 [blender__get_viewport_screenshot]
 ```
 
-![Low-poly tree generated in Blender through the local model](docs/tree.png)
+![Low-poly tree generated in Blender through the local model gemma4:e4b](docs/tree.png)
 
 <sub>Rendered straight out of Blender. The generator is kept in
 [`scripts/procedural_tree.py`](scripts/procedural_tree.py) — recursive tapered
@@ -32,11 +34,11 @@ branches, one roughened ico-sphere per branch tip.</sub>
 
 | Component | Why | Install |
 |---|---|---|
-| [Ollama](https://ollama.com) | serves the local model | `brew install ollama` |
+| [Ollama](https://ollama.com) | it serves the local model | `brew install ollama` |
 | [mcphost](https://github.com/mark3labs/mcphost) | MCP client that speaks to Ollama | `brew install mcphost` |
 | [uv](https://docs.astral.sh/uv/) | runs `blender-mcp` via `uvx` | `brew install uv` |
-| Blender 3.0+ | the thing being driven | [blender.org](https://www.blender.org/download/) |
-| BlenderMCP addon | exposes Blender on port 9876 | [ahujasid/blender-mcp](https://github.com/ahujasid/blender-mcp) |
+| Blender 3.0+ | the thing being driven (open-source and free) | [blender.org](https://www.blender.org/download/) |
+| BlenderMCP addon | exposes Blender on port 9876, if you don't want it local check it out | [ahujasid/blender-mcp](https://github.com/ahujasid/blender-mcp) |
 
 Built and tested on macOS (Apple Silicon) with **Blender 4.x**, **mcphost 0.34.0**,
 and **gemma4:e4b** (8B, Q4_K_M).
@@ -76,7 +78,7 @@ sed -i '' "s|/Users/[^/]*/.mcphost-blender-system.md|$HOME/.mcphost-blender-syst
 
 ## Run
 
-Start Blender, open the sidebar in the 3D viewport (press <kbd>N</kbd>), go to the
+Open Blender, click the edit button on right-top, preferences and open the sidebar in the 3D viewport (press <kbd>N</kbd>), go to the folder
 **BlenderMCP** tab and click **Connect**. Verify it's listening:
 
 ```bash
@@ -99,7 +101,7 @@ Useful flags:
 
 ```bash
 mcphost --approve-tool-run     # confirm before each tool call — good for the first runs
-mcphost -m ollama:gemma4:12b   # bigger model when e4b struggles on a complex build
+mcphost -m ollama:gemma4:12b   # bigger model when e4b struggles on a complex build (make sure that you've downloaded it on Ollama)
 mcphost --debug                # full protocol logging
 ```
 
@@ -170,7 +172,7 @@ ollama create gemma4-blender -f ollama/Modelfile.blender
 The system prompt in `config/blender-system-prompt.md` is where the real
 reliability comes from. It forces the model to pass `user_prompt` on every call
 (blender-mcp requires it), inspect the scene before guessing object names, and
-screenshot to verify its own work. Small models skip all three without being told.
+screenshot to verify its own work by running Blender. Small models skip all three without being told.
 
 ---
 
