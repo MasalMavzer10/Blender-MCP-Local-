@@ -1,0 +1,30 @@
+## mcphost config — drive the Blender MCP server with local Ollama models.
+##
+##   mcphost                       interactive chat (recommended)
+##   mcphost -p "build a tree"     one-shot
+##   mcphost -m ollama:gemma4:12b  override the model
+##
+## Requires: Ollama running, and Blender open with the BlenderMCP addon
+## started (sidebar > BlenderMCP > Connect, listening on port 9876).
+
+## Custom variant of gemma4:e4b — see ~/.mcphost-blender-system.md.
+## Built with num_ctx 32768 because Ollama otherwise loads this model at
+## 4096, which the 22 Blender tool schemas overflow on their own.
+model: "ollama:gemma4-blender"
+
+## Ollama's local API. Change only if you run Ollama on another host/port.
+provider-url: "http://localhost:11434"
+
+## Blender builds take many tool calls: inspect, build, screenshot, fix.
+max-steps: 40
+max-tokens: 8192
+
+## Keeps a small model honest about user_prompt args and bpy scripting.
+system-prompt: "~/.mcphost-blender-system.md"
+
+mcpServers:
+  blender:
+    type: local
+    command:
+      - uvx
+      - blender-mcp

@@ -1,0 +1,12 @@
+FROM gemma4:e4b
+
+# MCP/tool work needs far more than Ollama's 4096 default: the 22 Blender tool
+# schemas overflow that on their own, before any scene JSON or generated Python.
+# gemma4:e4b supports 131072, so 32768 is conservative and fits on 16GB unified memory.
+PARAMETER num_ctx 32768
+
+# gemma4 ships with temperature 1. Tool arguments and bpy code need
+# determinism, not creativity.
+PARAMETER temperature 0.4
+PARAMETER top_p 0.9
+PARAMETER top_k 64
