@@ -38,7 +38,8 @@ branches, one roughened ico-sphere per branch tip.</sub>
 | [mcphost](https://github.com/mark3labs/mcphost) | MCP client that speaks to Ollama | `brew install mcphost` |
 | [uv](https://docs.astral.sh/uv/) | runs `blender-mcp` via `uvx` | `brew install uv` |
 | Blender 3.0+ | the thing being driven (open-source and free) | [blender.org](https://www.blender.org/download/) |
-| BlenderMCP addon | exposes Blender on port 9876, if you don't want it local check it out | [ahujasid/blender-mcp](https://github.com/ahujasid/blender-mcp) |
+| BlenderMCP addon | exposes Blender on port 9876, if you don't want it local, check it out | [ahujasid/blender-mcp](https://github.com/ahujasid/blender-mcp) |
+| LLM inference in C/C++ | for the ones who want LLM inference with minimal setup | [ggml-org/llama.cpp](https://github.com/ggml-org/llama.cpp) |
 
 Built and tested on macOS (Apple Silicon) with **Blender 4.x**, **mcphost 0.34.0**,
 and **gemma4:e4b** (8B, Q4_K_M).
